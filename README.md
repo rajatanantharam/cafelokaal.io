@@ -42,11 +42,27 @@ CafeLokaal is a SaaS platform for cafes to integrate their POS systems and visua
 - **Rate Limiting:** Maximum 30 requests per minute per cafe for the dashboard data endpoint. Exceeding this limit will result in a `429 Too Many Requests` response.
 
 - Secure area available post-login.
+
+- Includes a **'Sync Data'** button on the dashboard.
+
+  - When clicked, this triggers a call to the `POST /api/posdata` endpoint with the latest data from the connected POS system.
+  - This allows manual syncing of POS data to CafeLokaal.
+  - A success/failure toast or message should be displayed to the user.
+
 - Visualizes order processing blockages:
+
+- **Rate Limiting:** Maximum 30 requests per minute per cafe for the dashboard data endpoint. Exceeding this limit will result in a `429 Too Many Requests` response.
+
+- Secure area available post-login.
+
+- Visualizes order processing blockages:
+
   - Delays in POS entry.
   - Queue build-ups.
   - Failed orders.
+
 - Charts powered by Angular libraries like Chart.js or ngx-charts.
+
 - Frontend fetches data from the following endpoint:
 
 ```http
