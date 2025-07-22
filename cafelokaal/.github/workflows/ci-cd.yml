@@ -1,0 +1,68 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  AZURE_WEBAPP_NAME: app-cafelokaal
+  AZURE_WEBAPP_PACKAGE_PATH: 'CafeLokaal.Api'
+  STATIC_WEBAPP_NAME: stapp-cafelokaal
+  STATIC_WEBAPP_PACKAGE_PATH: 'CafeLokaal.Web/dist/CafeLokaal.Web/browser'
+  DOTNET_VERSION: '8.0.x'
+  NODE_VERSION: '20.x'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Restore API dependencies
+      run: dotnet restore
+
+    - name: Build API
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Test API
+      run: dotnet test --no-restore --verbosity normal
+
+    - name: Install Frontend dependencies
+      working-directory: CafeLokaal.Web
+      run: npm install
+
+    - name: Build Frontend
+      working-directory: CafeLokaal.Web
+      run: npm run build:prod
+
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy API to Azure App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+    - name: Deploy Frontend to Azure Static Web Apps
+      uses: Azure/static-web-apps-deploy@v1
+      with:
+        azure_static_web_apps_api_token: ${{ secrets.STATIC_WEB_APP_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        app_location: ${{ env.STATIC_WEBAPP_PACKAGE_PATH }}
+        output_location: ''
+        skip_api_build: true

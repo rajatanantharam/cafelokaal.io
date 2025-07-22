@@ -1,0 +1,11 @@
+name: cafelokaal
+services:
+  api:
+    project: CafeLokaal.Api/CafeLokaal.Api.csproj
+    host: appservice
+    language: dotnet
+  web:
+    project: CafeLokaal.Web
+    host: staticwebapp
+    language: typescript
+    dist: dist/CafeLokaal.Web/browser
