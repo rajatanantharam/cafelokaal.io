@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
 import { InteractionType } from '@azure/msal-browser';
 
-import { msalConfig } from './auth/auth-config';
+import { msalConfig } from './features/auth/auth-config';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 

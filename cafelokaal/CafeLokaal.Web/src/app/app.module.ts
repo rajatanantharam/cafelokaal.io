@@ -13,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { GuardedComponent } from './guarded/guarded.component';
+import { HomeComponent } from './features/home/home.component';
+import { GuardedComponent } from './features/guarded/guarded.component';
 
 import {
   IPublicClientApplication,
@@ -34,7 +34,7 @@ import {
   MsalModule,
 } from '@azure/msal-angular';
 
-import { msalConfig, loginRequest } from './auth/auth-config';
+import { msalConfig, loginRequest } from './features/auth/auth-config';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.

@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserUtils } from '@azure/msal-browser';
 import { MsalGuard } from '@azure/msal-angular';
 
-import { HomeComponent } from './home/home.component';
-import { GuardedComponent } from './guarded/guarded.component';
+import { HomeComponent } from './features/home/home.component';
+import { GuardedComponent } from './features/guarded/guarded.component';
 
 /**
  * MSAL Angular can protect routes in your application
