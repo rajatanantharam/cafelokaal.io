@@ -34,7 +34,7 @@ import {
   MsalModule,
 } from '@azure/msal-angular';
 
-import { msalConfig, loginRequest } from './auth-config';
+import { msalConfig, loginRequest } from './auth/auth-config';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.

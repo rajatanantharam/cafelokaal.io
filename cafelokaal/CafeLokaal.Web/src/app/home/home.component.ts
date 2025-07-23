@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { MsalBroadcastService, MsalGuardConfiguration, MsalService, MSAL_GUARD_CONFIG } from '@azure/msal-angular';
 import { AuthenticationResult, InteractionStatus, InteractionType } from '@azure/msal-browser';
 
-import { createClaimsTable } from '../claim-utils';
+import { createClaimsTable } from '../auth/claim-utils';
 
 @Component({
   selector: 'app-home',
