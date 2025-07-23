@@ -1,48 +1,43 @@
 {
-  "name": "cafe-lokaal.web",
+  "name": "1-sign-in-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "serve:ssr:CafeLokaal.Web": "node dist/CafeLokaal.Web/server/server.mjs"
-  },
-  "prettier": {
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
+    "test": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCI",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.1.0",
-    "@angular/compiler": "^20.1.0",
-    "@angular/core": "^20.1.0",
-    "@angular/forms": "^20.1.0",
-    "@angular/platform-browser": "^20.1.0",
-    "@angular/platform-server": "^20.1.0",
-    "@angular/router": "^20.1.0",
-    "@angular/ssr": "^20.1.1",
-    "@azure/msal-angular": "^4.0.15",
-    "@azure/msal-browser": "^4.15.0",
-    "@types/chart.js": "^2.9.41",
-    "chart.js": "^4.5.0",
-    "express": "^5.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "@angular/animations": "^18.0.2",
+    "@angular/cdk": "^18.0.2",
+    "@angular/common": "^18.0.2",
+    "@angular/compiler": "^18.0.2",
+    "@angular/core": "^18.0.2",
+    "@angular/forms": "^18.0.2",
+    "@angular/material": "^18.0.2",
+    "@angular/platform-browser": "^18.0.2",
+    "@angular/platform-browser-dynamic": "^18.0.2",
+    "@angular/router": "^18.0.2",
+    "@azure/msal-angular": "^3.0.20",
+    "@azure/msal-browser": "^3.17.0",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.3",
+    "zone.js": "~0.14.7"
   },
   "devDependencies": {
-    "@angular/build": "^20.1.1",
-    "@angular/cli": "^20.1.1",
-    "@angular/compiler-cli": "^20.1.0",
-    "@types/express": "^5.0.1",
-    "@types/node": "^20.17.19",
-    "typescript": "~5.8.2"
+    "@angular-devkit/build-angular": "^18.0.3",
+    "@angular/cli": "~18.0.3",
+    "@angular/compiler-cli": "^18.0.2",
+    "@types/jasmine": "~5.1.4",
+    "jasmine-core": "~5.1.2",
+    "karma": "~6.4.3",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.4.5"
   }
 }

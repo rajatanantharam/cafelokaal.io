@@ -1,12 +1,5 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://localhost:7071',
-  msalConfig: {
-    auth: {
-      clientId: '${clientId}', // Replace with your Azure AD B2C app registration client ID
-      authority: 'https://${tenant}.b2clogin.com/${tenant}.onmicrosoft.com/B2C_1_signupsignin',
-      knownAuthorities: ['${tenant}.b2clogin.com'],
-      redirectUri: 'http://localhost:4200'
-    }
-  }
+  clientId: 'c12dae98-678f-40bb-b8f5-f409f458a85c',
+  authority:'https://cafelokaal.ciamlogin.com/'
 };
