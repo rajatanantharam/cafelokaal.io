@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from '@angular/material/button';
@@ -35,6 +34,7 @@ import {
 } from '@azure/msal-angular';
 
 import { msalConfig, loginRequest } from './features/auth/auth-config';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.
@@ -77,11 +77,6 @@ export function MsalGuardConfigurationFactory(): MsalGuardConfiguration {
     MsalModule,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
-      multi: true,
-    },
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory,

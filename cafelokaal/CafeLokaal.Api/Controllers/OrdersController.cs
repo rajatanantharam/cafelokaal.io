@@ -22,8 +22,6 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet]
-    [EnableRateLimiting("dashboard")]
-    [Authorize(Policy = "RequireCafeAccess")]
     public async Task<ActionResult<IEnumerable<CafeOrderModel>>> GetOrders()
     {
         try
@@ -44,7 +42,6 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPost("/api/posdata")]
-    [EnableRateLimiting("posdata")]
     public async Task<IActionResult> SyncData([FromBody] OrderSyncRequest request)
     {
         try
