@@ -8,7 +8,7 @@ import { CafeOrderModel, OrderSyncRequest } from '../models/order.models';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = `${environment.apiUrl}/api`;
+  private apiUrl = environment.apiUrl;
   private httpClient: HttpClient;
 
   constructor(http: HttpClient) {
@@ -16,10 +16,10 @@ export class OrderService {
   }
 
   getOrders(): Observable<CafeOrderModel[]> {
-    return this.httpClient.get<CafeOrderModel[]>(`${this.apiUrl}/orders`);
+    return this.httpClient.get<CafeOrderModel[]>(`${this.apiUrl}/api/orders`);
   }
 
   syncOrders(request: OrderSyncRequest): Observable<void> {
-    return this.httpClient.post<void>(`${this.apiUrl}/posdata`, request);
+    return this.httpClient.post<void>(`${this.apiUrl}/api/posdata`, request);
   }
 }

@@ -23,9 +23,12 @@ export const msalConfig: Configuration = {
     authority: environment.authority, // Replace the placeholder with your tenant subdomain
     redirectUri: '/', // Points to window.location.origin by default. You must register this URI on Microsoft Entra admin center/App Registration.
     postLogoutRedirectUri: '/', // Points to window.location.origin by default.
+    knownAuthorities: [environment.knownAuthorities], // Used to validate the authority during authentication.
+
   },
   cache: {
-    cacheLocation: BrowserCacheLocation.LocalStorage, // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+    cacheLocation: BrowserCacheLocation.LocalStorage,
+    storeAuthStateInCookie: false
   },
   system: {
     loggerOptions: {

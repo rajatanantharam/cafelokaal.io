@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using CafeLokaal.Api.Data;
 using CafeLokaal.Api.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace CafeLokaal.Api.Controllers;
 
@@ -22,23 +23,35 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet]
+    [EnableCors("AllowOrigin")] 
     public async Task<ActionResult<IEnumerable<CafeOrderModel>>> GetOrders()
     {
-        try
-        {
-            var cafeId = User.Claims.FirstOrDefault(c => c.Type == "extension_CafeId")?.Value;
-            var orders = await _context.Orders
-                .AsNoTracking()
-                .Where(o => o.CafeId == cafeId)
-                .ToListAsync();
+        // try
+        // {
+        //     var cafeId = User.Claims.FirstOrDefault(c => c.Type == "extension_CafeId")?.Value;
+        //     var orders = await _context.Orders
+        //         .AsNoTracking()
+        //         .Where(o => o.CafeId == cafeId)
+        //         .ToListAsync();
 
-            return Ok(orders);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error retrieving orders");
-            return StatusCode(500, "An error occurred while retrieving orders");
-        }
+        //     return Ok(orders);
+        // }
+        // catch (Exception ex)
+        // {
+        //     _logger.LogError(ex, "Error retrieving orders");
+        //     return StatusCode(500, "An error occurred while retrieving orders");
+        // }
+
+        return // a dummy order list for now
+            Ok(new List<CafeOrderModel>
+            {
+                new CafeOrderModel
+                {
+                    OrderId = Guid.NewGuid(),
+                    CafeId = "Cafe123",
+                    TotalAmount = 100.00m,
+                }
+            });
     }
 
     [HttpPost("/api/posdata")]

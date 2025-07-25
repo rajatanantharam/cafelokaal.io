@@ -31,10 +31,13 @@ import {
   MsalRedirectComponent,
   MsalInterceptor,
   MsalModule,
+  MsalInterceptorConfiguration,
+  MSAL_INTERCEPTOR_CONFIG
 } from '@azure/msal-angular';
 
 import { msalConfig, loginRequest } from './features/auth/auth-config';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.
@@ -54,6 +57,17 @@ export function MsalGuardConfigurationFactory(): MsalGuardConfiguration {
     authRequest: loginRequest
   };
 }
+
+export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
+  const protectedResourceMap = new Map<string, Array<string>>();
+  protectedResourceMap.set(environment.apiUrl, [environment.clientScope]); 
+  
+  return {
+    interactionType: InteractionType.Redirect,
+    protectedResourceMap
+  };
+}
+
 
 @NgModule({
   declarations: [
@@ -77,6 +91,19 @@ export function MsalGuardConfigurationFactory(): MsalGuardConfiguration {
     MsalModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
+    },
+    {
+      provide: MSAL_INTERCEPTOR_CONFIG,
+      useFactory: MSALInterceptorConfigFactory
+    },
+    {
+      provide: MSAL_GUARD_CONFIG,
+      useFactory: MsalGuardConfigurationFactory,
+    },
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory,
